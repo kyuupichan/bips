@@ -17,7 +17,7 @@ payment process.
 This BIP is a simplified update to BIP 70 with a few important differences.
 First, we have switched from protobufs (protocol buffers) to JSON. Second, we
 have removed the redundant signatures from the messages and define
-authentication to happen at the communication later (usually HTTPS). Thirdly, we
+authentication to happen at the communication layer (usually HTTPS). Thirdly, we
 add a notion of optional output values and output descriptions. There are a few
 other minor differences such as removing the redundant PaymentDetails object and
 changing all variable names to camelCase, and changing some names and terms.
@@ -188,7 +188,7 @@ If the customer authorizes payment, then the Bitcoin client:
 # Creates and signs a transaction that satisfy (pay in full) PaymentDetails.outputs
 # Validate that customer's system unix time (UTC) is still before PaymentDetails.expirationTimestamp. If it is not, the payment should be cancelled.
 # A POST a Payment message to the paymentUrl URL. The Payment message is serialized and sent as the body of the POST request.
-# The client can optionall broadcast the transaction(s) themselves to the Bitcoin network, but they are not required to do so as the payment host is expected to do so. If the payment host never broadcasts the transaction, then after two months the client can recover their funds.
+# The client can optionally broadcast the transaction(s) themselves to the Bitcoin network, but they are not required to do so as the payment host is expected to do so. If the payment host never broadcasts the transaction, then after two months the client can recover their funds.
 
 Errors communicating with the paymentUrl server should be communicated to the user.
 In the scenario where the payment host's server receives multiple identical Payment
@@ -263,7 +263,7 @@ removed authentication from BIP 270. Wallets should use other mechanisms to
 determine the name and identify of the recipient in a secure manner. Under the
 usual case on the web, BIP 270 messages will be sent and received over HTTPS,
 which uses X.509 certificates, and thus the wallet should simply show the domain
-name under most cases. HTTP (and insecure form of HTTPS) should not be
+name under most cases. HTTP (an insecure form of HTTPS) should not be
 supported.
 
 ==Extensibility==
